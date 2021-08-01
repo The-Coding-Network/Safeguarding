@@ -1,0 +1,23 @@
+{
+    "discoveryURL": "https://commentanalyzer.googleapis.com/$discovery/rest?version=v1alpha1",
+    "logging": {
+        "defaultLog": "871331506201694218",
+        "channelCreate": null,
+        "channelDelete": null,
+        "channelPinsUpdate": null,
+        "channelUpdate": null,
+        "emojiCreate": null,
+        "emojiDelete": null,
+        "emojiUpdate": null,
+        "guildBanAdd": null,
+        "guildBanRemove": null,
+        "guildMemberUpdate": null,
+        "messageDelete": null,
+        "messageUpdate": null,
+        "messageDeleteBulk": null,
+        "roleCreate": null,
+        "roleDelete": null,
+        "roleUpdate": null,
+        "guildMembersChunk": null
+    }
+}

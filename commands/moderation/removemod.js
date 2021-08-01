@@ -8,6 +8,10 @@ module.exports = {
     description: 'Does not allow a mod to log in',
     async execute(client, message, args, Discord, prefix) {
         message.delete()
+        if (!message.member.roles.cache.some(r => r.id === '869281781281620008' || r.id === '869609238316601425' || r.id === '869281507133505537')) {
+            message.reply(`You do not have permission to use this command`).then(msg => msg.delete({timeout: 5000}));
+            return;
+        }
         target = message.mentions.users.first();
         if(!target) return message.reply(`Please add a target user`).then(msg => msg.delete({timeout: 20000}));
         

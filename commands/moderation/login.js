@@ -28,21 +28,42 @@ module.exports = {
                     
                 } else {
                     if(await bcrypt.compare(password, profileData.password)) {
-                        message.reply("You are logged in").then(msg => msg.delete({timeout: 20000}));
-                        let channel = message.guild.channels.cache.find(r => r.id === '870687321538842634')
-                        const embed = new Discord.MessageEmbed()
-                        .setTitle(`User login`)
-                        .setDescription(`${member} has logged in`)
-                        .setTimestamp()
-            
-                        channel.send(embed)
 
                         if(profileData.headAdmin === 'true'){
                             member.roles.add(hadmin)
+                            message.reply("You are logged in").then(msg => msg.delete({timeout: 20000}));
+                            let channel = message.guild.channels.cache.find(r => r.id === '870687321538842634')
+                            const embed = new Discord.MessageEmbed()
+                            .setTitle(`User login`)
+                            .setDescription(`${member} has logged in`)
+                            .setTimestamp()
+                
+                            channel.send(embed)
+                            return;
                         } else if(profileData.admin === 'true'){
                             member.roles.add(admin)
+                            message.reply("You are logged in").then(msg => msg.delete({timeout: 20000}));
+                            let channel = message.guild.channels.cache.find(r => r.id === '870687321538842634')
+                            const embed = new Discord.MessageEmbed()
+                            .setTitle(`User login`)
+                            .setDescription(`${member} has logged in`)
+                            .setTimestamp()
+                
+                            channel.send(embed)
+                            return;
                         } else if(profileData.mod === 'true') {
                             member.roles.add(mod)
+                            message.reply("You are logged in").then(msg => msg.delete({timeout: 20000}));
+                            let channel = message.guild.channels.cache.find(r => r.id === '870687321538842634')
+                            const embed = new Discord.MessageEmbed()
+                            .setTitle(`User login`)
+                            .setDescription(`${member} has logged in`)
+                            .setTimestamp()
+                
+                            channel.send(embed)
+                            return;
+                        } else {
+                            message.reply("You have entered the wrong password or are not allowed to login, please check your spelling").then(msg => msg.delete({timeout: 20000}));
                         }
                     } else {
                         message.reply("You have entered the wrong password or are not allowed to login, please check your spelling").then(msg => msg.delete({timeout: 20000}));
