@@ -68,7 +68,10 @@ module.exports = (client, Discord) => {
 
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [TOXIC](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     
@@ -87,7 +90,10 @@ module.exports = (client, Discord) => {
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed this too personal for our friendly community, please try and be more friendly Thank You`)
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [IDENTITY_ATTACK](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     
@@ -107,7 +113,10 @@ module.exports = (client, Discord) => {
 
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [THREAT](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     
@@ -127,7 +136,10 @@ module.exports = (client, Discord) => {
 
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [SEXUALLY_EXPLICIT](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     
@@ -147,7 +159,10 @@ module.exports = (client, Discord) => {
 
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [PROFANITY](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     
@@ -167,7 +182,10 @@ module.exports = (client, Discord) => {
 
                     const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
                     let msg = `[${d}] [FLIRTATION](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
-                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                    fs.appendFile(`./logs/Guild/chat.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
+                    fs.appendFile(`./logs/Guild/guild.txt`, msg, (err) => {
                         if (err) throw err;
                     });
     

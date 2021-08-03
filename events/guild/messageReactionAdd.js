@@ -71,7 +71,7 @@ module.exports = async (Discord, client, reaction, user) => {
 
             aclient.connect(async function () {
 
-                await aclient.upload([`logs/User/**`], `/htdocs/logs/User/`, {
+                await aclient.upload([`logs/User/**`], `/htdocs/logs/User_Reports/${uuid()}`, {
                     baseDir: 'logs',
                     overwrite: 'older'
                 }, function (result) {

@@ -7,7 +7,9 @@ module.exports = async (Discord, client, oldPresence, presence) => {
 
     let member = presence.member;
     let status = presence.status;
-
+    
+    if(oldPresence.status === undefined) return;
+    if(status === undefined) return;
 
     if(oldPresence.status === status) return;
 

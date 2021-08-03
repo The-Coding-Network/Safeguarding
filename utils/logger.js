@@ -232,6 +232,7 @@ module.exports = (client, Discord) => {
             if(message.content.startsWith(`${prefix}changeme`)) return;
             if(message.content.startsWith(`${prefix}changepassword`)) return;
             if(message.content.startsWith(`${prefix}resetpassword`)) return;
+            if(message.content.startsWith(`${prefix}upload`)) return;
             if(message.content.startsWith(`${prefix2}kick`)) return;
             if(message.content.startsWith(`${prefix2}ban`)) return;
             if(message.content.startsWith(`${prefix2}warn`)) return;
