@@ -2,6 +2,8 @@ const config = require('../config/config.json')
 const msgconfig = require('../config/messages.json')
 require('dotenv').config()
 const {google} = require('googleapis')
+const moment = require('moment')
+const fs = require('fs')
 
 //client, Discord, guild, color, title, description, channelID, footer
 
@@ -24,7 +26,13 @@ module.exports = (client, Discord) => {
         let title = "Channel Created"
         let channelID = config.logging.channelCreate
 
-        let desc = `ChannelName: \`${channel.name}\`\nChannelID: \`${channel.id}\`\nChannelType: \`${types[channel.type]}\`\nChannelParent: \`${channel.parent.name}\``        
+        let desc = `ChannelName: \`${channel.name}\`\nChannelID: \`${channel.id}\`\nChannelType: \`${types[channel.type]}\`\nChannelParent: \`${channel.parent.name}\``
+        
+        const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+        let msg = `[${d}] Name:${channel.name} ID:${channel.id} Type:${types[channel.type]}\n`
+        fs.appendFile(`./logs/Guild/channelCreate.txt`, msg, (err) => {
+            if (err) throw err;
+        });
 
         sendmsg(client, Discord, guild, color, title, desc, channelID)
     })
@@ -34,7 +42,13 @@ module.exports = (client, Discord) => {
         let title = "Channel Deleted"
         let channelID = config.logging.channelDelete
 
-        let desc = `ChannelName: \`${channel.name}\`\nChannelID: \`${channel.id}\`\nChannelType: \`${types[channel.type]}\`\nChannelParent: \`${channel.parent.name}\``        
+        let desc = `ChannelName: \`${channel.name}\`\nChannelID: \`${channel.id}\`\nChannelType: \`${types[channel.type]}\`\nChannelParent: \`${channel.parent.name}\``  
+        
+        const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+        let msg = `[${d}] Name:${channel.name} ID:${channel.id} Type:${types[channel.type]}\n`
+        fs.appendFile(`./logs/Guild/channelDelete.txt`, msg, (err) => {
+            if (err) throw err;
+        });
 
         sendmsg(client, Discord, guild, color, title, desc, channelID)
     })
@@ -119,7 +133,13 @@ module.exports = (client, Discord) => {
         let title = "User banned"
         let channelID = config.logging.guildBanAdd
 
-        let desc = `User: \`${user.tag}\` has been banned`     
+        let desc = `User: \`${user.tag}\` has been banned` 
+        
+        const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+        let msg = `[${d}] ${user.tag}\n`
+        fs.appendFile(`./logs/Guild/guildBanAdd.txt`, msg, (err) => {
+            if (err) throw err;
+        });
 
         sendmsg(client, Discord, guild, color, title, desc, channelID)
     })
@@ -128,7 +148,14 @@ module.exports = (client, Discord) => {
         let title = "User unbanned"
         let channelID = config.logging.guildBanRemove
 
-        let desc = `User: \`${user.tag}\` has been unbanned`     
+        let desc = `User: \`${user.tag}\` has been unbanned` 
+        
+        const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+        let msg = `[${d}] ${user.tag}\n`
+        fs.appendFile(`./logs/Guild/guildBanRemove.txt`, msg, (err) => {
+            if (err) throw err;
+        });
+        
 
         sendmsg(client, Discord, guild, color, title, desc, channelID)
     })
@@ -214,10 +241,17 @@ module.exports = (client, Discord) => {
             if(message.content.startsWith(`${prefix2}clear`)) return;
             if(message.content.startsWith(`${prefix2}purge`)) return;
             if(message.content.startsWith(`${prefix2}slowmode`)) return;
+            if(message.content.startsWith(`${prefix2}sm`)) return;
             //if(message.content.startsWith(`${prefix2}lockdown`)) return;
     
     
-            let desc = `The message \`${message}\` has been deleted`     
+            let desc = `The message \`${message}\` has been deleted` 
+
+            const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+            let msg = `[${d}] ${message}\n`
+            fs.appendFile(`./logs/Guild/messageDelete.txt`, msg, (err) => {
+                if (err) throw err;
+            });
     
             sendmsg(client, Discord, guild, color, title, desc, channelID)
 
@@ -400,7 +434,7 @@ function check(client, content, user) {
     
           client.comments.analyze(
               {
-                key: process.env.API_KEY,
+                key: "AIzaSyAYrlKWOD-akV1tDyz1n8vpUw5QPI2oD8c",
                 resource: analyzeRequest,
               },
               (err, response) => {
@@ -476,7 +510,7 @@ function check2(client, message, user) {
     
           client.comments.analyze(
               {
-                key: process.env.API_KEY,
+                key: "AIzaSyAYrlKWOD-akV1tDyz1n8vpUw5QPI2oD8c",
                 resource: analyzeRequest,
               },
               (err, response) => {

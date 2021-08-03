@@ -12,8 +12,12 @@
     "bcrypt": "^5.0.1",
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "ftp-client": "^0.2.2",
     "googleapis": "^82.0.0",
-    "mongoose": "^5.13.4"
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.4",
+    "uuid": "^8.3.2"
   }
 }

@@ -1,5 +1,8 @@
 const config = require('../config/config.json')
 const {google} = require('googleapis')
+const moment = require('moment')
+const fs = require('fs')
+
 module.exports = (client, Discord) => {
     console.log("Chatmod module has loaded")
 
@@ -11,7 +14,7 @@ module.exports = (client, Discord) => {
         if(message.author.bot) return;
 
         
-        const prefix2 = '!'
+        const prefix2 = '.'
         if(message.content.startsWith(`${prefix2}kick`)) return message.delete();
         if(message.content.startsWith(`${prefix2}ban`)) return message.delete();
         if(message.content.startsWith(`${prefix2}warn`)) return message.delete();
@@ -21,6 +24,7 @@ module.exports = (client, Discord) => {
         if(message.content.startsWith(`${prefix2}clear`)) return message.delete();
         if(message.content.startsWith(`${prefix2}purge`)) return message.delete();
         if(message.content.startsWith(`${prefix2}slowmode`)) return message.delete();
+        if(message.content.startsWith(`${prefix2}sm`)) return message.delete();
         //if(message.content.startsWith(`${prefix2}lockdown`)) return message.delete();
 
 
@@ -42,7 +46,7 @@ module.exports = (client, Discord) => {
     
           client.comments.analyze(
               {
-                key: process.env.API_KEY,
+                key: "AIzaSyAYrlKWOD-akV1tDyz1n8vpUw5QPI2oD8c",
                 resource: analyzeRequest,
               },
               (err, response) => {
@@ -61,6 +65,12 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed this too toxic for our friendly community, please try and be more friendly Thank You`)
+
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [TOXIC](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 //IDENTITY_ATTACK
@@ -75,6 +85,11 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed this too personal for our friendly community, please try and be more friendly Thank You`)
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [IDENTITY_ATTACK](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 //THREAT
@@ -89,6 +104,12 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed this a threat for our friendly community, please try and be more friendly Thank You`)
+
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [THREAT](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 //SEXUALLY_EXPLICIT
@@ -103,12 +124,18 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed this too sexual for our friendly community, please try and be more friendly Thank You`)
+
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [SEXUALLY_EXPLICIT](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 //PROFANITY
                 let profanity_value = JSON.stringify(response.data.attributeScores.PROFANITY.summaryScore.value, null, 2)
                 let profanity_percent = profanity_value * 100
-                if(profanity_percent > 75) {
+                if(profanity_percent > 60) {
                     let content = message.content
                     message.delete()
                     const embed = new Discord.MessageEmbed()
@@ -117,6 +144,12 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed that is has too much profanity for our friendly community, please try and be more friendly Thank You`)
+
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [PROFANITY](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 //FLIRTATION
@@ -131,6 +164,12 @@ module.exports = (client, Discord) => {
                     .setTimestamp()
                     channel.send(embed)
                     message.author.send(`The sentence you sent \`${content}\`, I have deemed that is has too much flirtation for our friendly community, please try and be more friendly Thank You`)
+
+                    const d = moment(Date.now()).format('YYYY/MM/DD HH:MM:SS')            
+                    let msg = `[${d}] [FLIRTATION](${toxic_percent.toFixed(2)}%) User:${message.author.tag} Content: ${content}\n`
+                    fs.appendFile(`./logs/Guild/chatLogs.txt`, msg, (err) => {
+                        if (err) throw err;
+                    });
     
                 }
                 
