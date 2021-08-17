@@ -6,7 +6,12 @@ module.exports = (client, Discord) => {
 
     for(const file of util_files) {
       const utilf = require(`../utils/${file}`)  
+      if(!file === 'chatmod.js'){
+        utilf(client, Discord)        
+      }
       utilf(client, Discord)
+      
+
     }
 
 }

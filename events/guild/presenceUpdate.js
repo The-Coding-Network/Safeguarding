@@ -8,12 +8,12 @@ module.exports = async (Discord, client, oldPresence, presence) => {
     let member = presence.member;
     let status = presence.status;
     
-    if(oldPresence.status === undefined) return;
+    if(oldPresence === undefined) return;
     if(status === undefined) return;
 
     if(oldPresence.status === status) return;
 
-    if (message.member.roles.cache.some(r => r.id === '869281781281620008' || r.id === '869609238316601425' || r.id === '869281507133505537')) {
+    if (presence.member.roles.cache.some(r => r.id === '869281781281620008' || r.id === '869609238316601425' || r.id === '869281507133505537')) {
 
     if(status === 'offline') {
 
@@ -48,10 +48,9 @@ module.exports = async (Discord, client, oldPresence, presence) => {
             }
         } catch (err) {
             console.log(err)
-            mongoose.connection.close()
-        } finally {
-            mongoose.connection.close()
         }
+    }).then((mongoose) => {
+        mongoose.connection.close()
     })
 }
 
