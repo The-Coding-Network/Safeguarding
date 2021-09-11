@@ -16,32 +16,32 @@ module.exports = (client, Discord) => {
 
 
         const prefix2 = '.'
-        if (message.content.startsWith(`${prefix}upload`)) return message.delete();
-        if (message.content.startsWith(`${prefix}addadmin`)) return message.delete();
-        if (message.content.startsWith(`${prefix}addhadmin`)) return message.delete();
-        if (message.content.startsWith(`${prefix}addmod`)) return message.delete();
-        if (message.content.startsWith(`${prefix}bypass`)) return message.delete();
-        if (message.content.startsWith(`${prefix}login`)) return message.delete();
-        if (message.content.startsWith(`${prefix}logout`)) return message.delete();
-        if (message.content.startsWith(`${prefix}passwd`)) return message.delete();
-        if (message.content.startsWith(`${prefix}changeme`)) return message.delete();
-        if (message.content.startsWith(`${prefix}changepassword`)) return message.delete();
-        if (message.content.startsWith(`${prefix}resetpassword`)) return message.delete();
-        if (message.content.startsWith(`${prefix}removeadmin`)) return message.delete();
-        if (message.content.startsWith(`${prefix}removehadmin`)) return message.delete();
-        if (message.content.startsWith(`${prefix}removemod`)) return message.delete();
+        if (message.content.startsWith(`${prefix}upload`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}addadmin`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}addhadmin`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}addmod`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}bypass`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}login`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}logout`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}passwd`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}changeme`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}changepassword`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}resetpassword`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}removeadmin`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}removehadmin`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix}removemod`)) return message.delete().catch(err => console.log(err));
 
-        if (message.content.startsWith(`${prefix2}kick`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}ban`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}warn`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}unban`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}mute`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}unmute`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}clear`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}purge`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}slowmode`)) return message.delete();
-        if (message.content.startsWith(`${prefix2}sm`)) return message.delete();
-        //if(message.content.startsWith(`${prefix2}lockdown`)) return message.delete();
+        if (message.content.startsWith(`${prefix2}kick`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}ban`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}warn`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}unban`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}mute`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}unmute`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}clear`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}purge`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}slowmode`)) return message.delete().catch(err => console.log(err));
+        if (message.content.startsWith(`${prefix2}sm`)) return message.delete().catch(err => console.log(err));
+        //if(message.content.startsWith(`${prefix2}lockdown`)) return message.delete().catch(err => console.log(err));
 
         try {
             google.discoverAPI(DISCOVERY_URL)
@@ -74,7 +74,7 @@ module.exports = (client, Discord) => {
                             let toxic_percent = toxic_value * 100
                             if (toxic_percent > 75) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`TOXIC WARNING (${toxic_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -97,7 +97,7 @@ module.exports = (client, Discord) => {
                             let identity_percent = identity_value * 100
                             if (identity_percent > 75) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`IDENTITY_ATTACK WARNING (${identity_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -119,7 +119,7 @@ module.exports = (client, Discord) => {
                             let threat_percent = threat_value * 100
                             if (threat_percent > 75) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`THREAT WARNING (${threat_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -142,7 +142,7 @@ module.exports = (client, Discord) => {
                             let sexual_percent = sexual_value * 100
                             if (sexual_percent > 75) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`SEXUAL WARNING (${sexual_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -165,7 +165,7 @@ module.exports = (client, Discord) => {
                             let profanity_percent = profanity_value * 100
                             if (profanity_percent > 60) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`PROFANITY WARNING (${profanity_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -188,7 +188,7 @@ module.exports = (client, Discord) => {
                             let flirtation_percent = flirtation_value * 100
                             if (flirtation_percent > 75) {
                                 let content = message.content
-                                message.delete()
+                                message.delete().catch(err => console.log(err))
                                 const embed = new Discord.MessageEmbed()
                                     .setTitle(`FLIRTATION WARNING (${flirtation_percent.toFixed(2)}%) by ${message.author.tag}`)
                                     .setDescription(`This user has used the sentence \`${content}\``)
@@ -225,3 +225,4 @@ module.exports = (client, Discord) => {
 
 
 }
+

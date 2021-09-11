@@ -11,9 +11,9 @@ module.exports = (client, Discord) => {
         }
 
         let badcontent = `Please do not send any images related to nudity, weapons, alcohol or drugs`
+        if(!message.attachments.first()) return;
         let image = message.attachments.first().url;
         const channel = client.channels.cache.get('869532219457273917')
-
         const embed = new Discord.MessageEmbed()
         .setTitle(`Image violation`)
         .setDescription(`${message.author.tag} has sent the image [Image](${image})`)
